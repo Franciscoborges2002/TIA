@@ -1,1 +1,1 @@
-<h1> TIA CU Repository </h1>
+<h1> TIA course subject Repository </h1>
