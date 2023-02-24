@@ -24,6 +24,22 @@ Comentario estruturado
 </div>
 
 <div id="operators">
-:- > Verificar se é igual
+?-  > Perguntar se é relação entre dois valores.<br />
+
+``` prolog
+    parente(andre,francisco).
+    parente(joao,francisco).
+    parente(francisco,goncalo).
+    parente(goncalo,rui).
+```
+
+``` prolog
+?-parente(joao,francisco)
+
+Answer: Yes/true
+```
+---
+:-  > Verificar se é igual
+
 \== > Veriicar se é diferente
 </div>
