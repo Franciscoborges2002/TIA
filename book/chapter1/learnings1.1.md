@@ -85,7 +85,7 @@ Condiz com a conjugação dos seguintes objetivos:
         <h1>Questões:</h1>
         <img src="./imgs/1.1.png" /><br />
         <h3>1.1.Com a imagem a cima, quais serão as respostas prolog as seguitnes questões:</h3>
-
+``` prolog
         ?- parent(jim,X).
         O jim não começa nenhuma relação apenas acaba
         Resposta: 
@@ -103,10 +103,10 @@ Condiz com a conjugação dos seguintes objetivos:
         E ainda Y e X parentes
         Resposta: X=bob
                   Y=pat
-
 ``
         <h3>1.2.Quais as perguntas a fazer:</h3>
-```
+
+``` prolog
         a) Quem é o parente do Pat?
         ?- parent(X,pat).
 
