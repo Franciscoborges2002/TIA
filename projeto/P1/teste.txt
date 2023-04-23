@@ -1,0 +1,10 @@
+origem_braga,destino_porto,gastar_pouco,sem_orcamento,gastar_muito,viagem_curta,sem_restricao,viagem_longa,perfil
+1,1,1,0,0,1,0,0,perfil1
+1,1,1,0,0,0,1,0,perfil2
+1,1,1,0,0,0,0,1,perfil3
+1,1,0,1,0,1,0,0,perfil4
+1,1,0,1,0,0,1,0,perfil5
+1,1,0,1,0,0,0,1,perfil6
+1,1,0,0,1,1,0,0,perfil7
+1,1,0,0,1,0,1,0,perfil8
+1,1,0,0,1,0,0,1,perfil9

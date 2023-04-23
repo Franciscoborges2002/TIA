@@ -1,6 +1,0 @@
-/*
-    Ficheiro: baseDados
-
-*/
-
-transporte().

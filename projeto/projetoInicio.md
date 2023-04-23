@@ -11,3 +11,5 @@ Pensar num racicionio para como ajudar as pessoas, adecuar as soluções as cara
 
 Pontos extras, ver base de conhecimento a usar
 Modo manual (regras manuais) ou automatico (regras automaticas).
+
+Somos o grupo 1.
