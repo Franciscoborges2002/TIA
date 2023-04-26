@@ -1,3 +1,5 @@
+:- [carregarFicheiros].
+
 %
 %_______________BACKWARD_______________________ era como chegar ao medico e dizer os problemas que temos e ele depois dar as soluçoes 
 
@@ -56,4 +58,4 @@ all_from_first_in_second(List1, List2) :-
 
 final(User):- nl, demo, nl, write('Obrigado, '), write(User).
 
-resultado(P):- nl, findall(Y,(fact(P),solucao(Y,_,_,_,_,_,LP), member(P,LP)),L), write('resultado:'), nl, write(L), nl. 
+resultado(P):- nl, findall(Y,(fact(P),transporte(Y,_,LP), member(P,LP)),L), write('resultado:'), nl, write(L), nl. 

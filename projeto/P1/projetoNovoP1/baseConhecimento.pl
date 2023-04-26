@@ -1,45 +1,32 @@
 %_________________________ BASE CONHECIMENTO _________________________________
 %__SEM ORCAMENTO__
-if sem_orcamento and sem_restricao then viagemLivre.
+/* if sem_orcamento and sem_restricao then viagemLivre.
 if sem_orcamento and viagem_curta then viagemCurta.
-if sem_orcamento and viagem_longa then viagemLonga.
+if sem_orcamento and viagem_longa then viagemLonga. */
 
 %__GASTAR POUCO__
 if gastar_pouco and viagem_curta then viagemTrabalho.
 if gastar_pouco and viagem_longa then viagemGastarPoucoLonga.
-if gastar_pouco and sem_restricao then viagemGastarPouco.
+%if gastar_pouco and sem_restricao then viagemGastarPouco.
 
 %__GASTAR MUITO__
 if gastar_muito and viagem_longa then viagemPasseio.
-if gastar_muito and sem_restricao then viagemGastarMuito.
 if gastar_muito and viagem_curta then viagemGastarMuitoCurta.
+%if gastar_muito and sem_restricao then viagemGastarMuito.
 
-/* %__VIAGEM LIVRE & CASA BANHO__
-if viagemLivre and casa_de_banho then viagemLivreCasaBanho.
-if viagemLivre and sem_casa_de_banho then viagemLivreSemCasaBanho.
+%__CASA DE BANHO__
+/* if casa_de_banho and zona_fumador then casaBanhoFumador.
+if casa_de_banho and sem_zona_fumador then casaBanhoSemZonaFumador.
 
-%__VIAGEM CURTA & CASA BANHO__
-if viagemCurta and casa_de_banho then viagemCurtaCasaBanho.
-if viagemCurta and sem_casa_de_banho then viagemCurtaSemCasaBanho.
+if sem_casa_de_banho and zona_fumador then semCasaBanhoFumador.
+if sem_casa_de_banho and sem_zona_fumador then semCasaBanhoSemZonaFumador.
 
-%__VIAGEM LONGA & CASA BANHO__
-if viagemLonga and casa_de_banho then viagemLongaCasaBanho.
-if viagemLonga and sem_casa_de_banho then viagemLongaSemCasaBanho.
+if wifi and mais_ecologico then comboioWifiMaisEcologico.
+if wifi and mais_ecologico then autocarroWifiMaisEcologico.
 
-%__VIAGEM TRABALHO & CASA BANHO__
-if viagemTrabalho and casa_de_banho then viagemTrabalhoCasaBanho.
-if viagemTrabalho and sem_casa_de_banho then viagemTrabalhoSemCasaBanho.
+if wifi and menos_ecologico then autocarroWifiMenosEcologico.
 
-%__VIAGEM GASTAR POUCO & LONGA & CASA BANHO__
-if viagemGastarPoucoLonga and casa_de_banho then viagemGastarPoucoLongaCasaBanho.
-if viagemGastarPoucoLonga and sem_casa_de_banho then viagemGastarPoucoLongaSemCasaBanho.
+if sem_wifi and mais_ecologico then comboioSemWifiMaisEcologico.
+if sem_wifi and mais_ecologico then autocarroSemWifiMaisEcologico.
 
-%__VIAGEM GASTAR POUCO SEM RESTRICAO & CASA BANHO__
-if viagemGastarPouco and casa_de_banho then viagemGastarPoucoCasaBanho.
-if viagemGastarPouco and sem_casa_de_banho then viagemGastarPoucoSemCasaBanho.
-
-%__VIAGEM PASSEIO & CASA BANHO__
-if viagemPasseio and casa_de_banho then viagemPasseioCasaBanho.
-if viagemPasseio and sem_casa_de_banho then viagemPasseioSemCasaBanho. */
-
-%wifi
+if sem_wifi and menos_ecologico then automovelSemWifiMenosEcologico. */

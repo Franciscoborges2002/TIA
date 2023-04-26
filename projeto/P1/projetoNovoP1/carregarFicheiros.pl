@@ -2,7 +2,7 @@
     Purpose: Load my program
 */
 
-:- [ rules,
-     inference,
-     goals
+:- [ inicio,
+    baseDados,
+    baseConhecimento
    ].

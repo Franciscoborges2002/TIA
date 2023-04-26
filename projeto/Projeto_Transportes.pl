@@ -46,13 +46,13 @@ if viagemLivre and casa_de_banho then viagemLivreCasaBanho.
 
 %___________________________ BASE DE DADOS ____________________________________
 
-solucao('Origem: Braga, Destino: Porto, Preco: 3€, Transporte: Comboio, Tempo de Viagem: 50 minutos', origem_braga, destino_porto, [gastar_pouco, sem_orcamento, viagem_curta, sem_restricao, casa_de_banho]).
-solucao('Origem: Braga, Destino: Porto, Preco: 14€, Transporte: Autocarro, Tempo de Viagem: 70 minutos', origem_braga, destino_porto, [gastar_muito, sem_orcamento, viagem_longa, sem_restricao, nao_casa_de_banho]).
-solucao('Origem: Braga, Destino: Porto, Preco: 15€, Transporte: Automovel, Tempo de Viagem: 40 minutos', origem_braga, destino_porto, [gastar_muito, sem_orcamento], [viagem_curta, sem_restricao], [perfil4, perfil5, perfil7, perfil8]).
+solucao('Origem: Braga, Destino: Porto, Preco: 3€, Transporte: Comboio, Tempo de Viagem: 50 minutos', origem_braga, destino_porto, [gastar_pouco, viagem_curta, casa_de_banho]).
+solucao('Origem: Braga, Destino: Porto, Preco: 14€, Transporte: Autocarro, Tempo de Viagem: 70 minutos', origem_braga, destino_porto, [gastar_muito, viagem_longa, nao_casa_de_banho]).
+solucao('Origem: Braga, Destino: Porto, Preco: 15€, Transporte: Automovel, Tempo de Viagem: 40 minutos', origem_braga, destino_porto, [gastar_muito], [viagem_curta], [perfil4, perfil5, perfil7, perfil8]).
 
-solucao('Origem: Porto, Destino: Braga, Preco: 3€, Transporte: Comboio, Tempo de Viagem: 50 minutos', origem_porto, destino_braga, [gastar_pouco, sem_orcamento], [viagem_curta, sem_restricao], [perfil82, perfil83, perfil85, perfil86]).
-solucao('Origem: Porto, Destino: Braga, Preco: 14€, Transporte: Autocarro, Tempo de Viagem: 70 minutos', origem_porto, destino_braga, [gastar_muito, sem_orcamento], [viagem_longa, sem_restricao], [perfil86, perfil87, perfil89, perfil90]).
-solucao('Origem: Porto, Destino: Braga, Preco: 15€, Transporte: Automovel, Tempo de Viagem: 40 minutos', origem_porto, destino_braga, [gastar_muito, sem_orcamento], [viagem_curta, sem_restricao], [perfil85, perfil86, perfil88, perfil89]).
+solucao('Origem: Porto, Destino: Braga, Preco: 3€, Transporte: Comboio, Tempo de Viagem: 50 minutos', origem_porto, destino_braga, [gastar_pouco], [viagem_curta], [perfil82, perfil83, perfil85, perfil86]).
+solucao('Origem: Porto, Destino: Braga, Preco: 14€, Transporte: Autocarro, Tempo de Viagem: 70 minutos', origem_porto, destino_braga, [gastar_muito], [viagem_longa], [perfil86, perfil87, perfil89, perfil90]).
+solucao('Origem: Porto, Destino: Braga, Preco: 15€, Transporte: Automovel, Tempo de Viagem: 40 minutos', origem_porto, destino_braga, [gastar_muito], [viagem_curta], [perfil85, perfil86, perfil88, perfil89]).
 
 
 
