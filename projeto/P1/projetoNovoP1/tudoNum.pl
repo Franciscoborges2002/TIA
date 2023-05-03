@@ -66,9 +66,11 @@ new_derived_fact( Concl)  :-
    composed_fact( Cond).             % Condition true?
 
 composed_fact( Cond)  :-
+   %write('1:'),write(Cond),nl,nl,
    intermedio( Cond).                      % Simple fact
 
 composed_fact( Cond1 and Cond2)  :-
+   %write('2:'),write(Cond1),write(Cond2),nl,nl,
    composed_fact( Cond1),
    composed_fact( Cond2).            % Both conjuncts true
 
@@ -194,7 +196,8 @@ transporte('Origem: Coimbra, Destino: Viseu, Preco: 40€, Transporte: Automóve
 
 %_________________________ INTERFACE _____________________________________
 :-dynamic(fact/1). % definir fact como dinamico
-:-[backward, forward, bd, baseconhecimento].
+/* :-[backward, forward, bd, baseconhecimento]. */
+:- use_module(library(lists)).
 
 iniciar:-retractall(fact(_)), retractall(intermedio(_)), retractall(origem(_)), retractall(destino(_)),write('Bem vindo e Boa sessão!'),nl,nl,perguntaNome().
 
@@ -229,9 +232,140 @@ perguntaOrigem(User):- nl, write('Escolha a sua origem: '),nl, nl,
 /*
 *
 *PERGUNTA DESTINO
-*
+*findall(X, origem(X), Origem) nth0(0,Origem,OrigemVerificar)
 */
-perguntaDestino(User):- nl, write('Escolha o seu destino: '),nl, nl,
+
+perguntaDestino(User):- findall(X, origem(X), Origem), nth0(0,Origem,OrigemRecebida),
+   nl, write('Escolha o seu destino: '),nl, nl,
+   (OrigemRecebida == 'origem_braga' ->
+      (
+         write('"a." - Porto.'),nl,
+         write('"b." - Lisboa.'),nl,
+         write('"c." - Guimarães.'),nl,
+         write('"d." - Viseu.'),nl,
+         write('"e." - Coimbra.'),nl,
+         write('"f." - Faro.'),nl,
+         write(' A sua opcao e : '),read(Destino),
+         (
+            (Destino == a), assert(destino(destino_porto)),perguntaPreco1(User);
+            (Destino == b), assert(destino(destino_lisboa)),perguntaPreco1(User);
+            (Destino == c), assert(destino(destino_guimaraes)),perguntaPreco1(User);
+            (Destino == d), assert(destino(destino_viseu)),perguntaPreco1(User);
+            (Destino == e), assert(destino(destino_coimbra)),perguntaPreco1(User);
+            (Destino == f), assert(destino(destino_faro)),perguntaPreco1(User)
+         )
+      )
+   ;OrigemRecebida == 'origem_porto' ->
+      (
+         write('"a." - Braga.'),nl,
+         write('"b." - Lisboa.'),nl,
+         write('"c." - Guimarães.'),nl,
+         write('"d." - Viseu.'),nl,
+         write('"e." - Coimbra.'),nl,
+         write('"f." - Faro.'),nl,
+         write(' A sua opcao e : '),read(Destino),
+         (
+            (Destino == a), assert(destino(destino_braga)),perguntaPreco1(User);
+            (Destino == b), assert(destino(destino_lisboa)),perguntaPreco1(User);
+            (Destino == c), assert(destino(destino_guimaraes)),perguntaPreco1(User);
+            (Destino == d), assert(destino(destino_viseu)),perguntaPreco1(User);
+            (Destino == e), assert(destino(destino_coimbra)),perguntaPreco1(User);
+            (Destino == f), assert(destino(destino_faro)),perguntaPreco1(User)
+         )
+      )
+      ;OrigemRecebida == 'origem_lisboa' ->
+      (
+         write('"a." - Braga.'),nl,
+         write('"b." - Porto.'),nl,
+         write('"c." - Guimarães.'),nl,
+         write('"d." - Viseu.'),nl,
+         write('"e." - Coimbra.'),nl,
+         write('"f." - Faro.'),nl,
+         write(' A sua opcao e : '),read(Destino),
+         (
+            (Destino == a), assert(destino(destino_braga)),perguntaPreco1(User);
+            (Destino == b), assert(destino(destino_porto)),perguntaPreco1(User);
+            (Destino == c), assert(destino(destino_guimaraes)),perguntaPreco1(User);
+            (Destino == d), assert(destino(destino_viseu)),perguntaPreco1(User);
+            (Destino == e), assert(destino(destino_coimbra)),perguntaPreco1(User);
+            (Destino == f), assert(destino(destino_faro)),perguntaPreco1(User)
+         )
+      )
+      ;OrigemRecebida == 'origem_guimaraes' ->
+      (
+         write('"a." - Braga.'),nl,
+         write('"b." - Porto.'),nl,
+         write('"c." - Lisboa.'),nl,
+         write('"d." - Viseu.'),nl,
+         write('"e." - Coimbra.'),nl,
+         write('"f." - Faro.'),nl,
+         write(' A sua opcao e : '),read(Destino),
+         (
+            (Destino == a), assert(destino(destino_braga)),perguntaPreco1(User);
+            (Destino == b), assert(destino(destino_porto)),perguntaPreco1(User);
+            (Destino == c), assert(destino(destino_lisboa)),perguntaPreco1(User);
+            (Destino == d), assert(destino(destino_viseu)),perguntaPreco1(User);
+            (Destino == e), assert(destino(destino_coimbra)),perguntaPreco1(User);
+            (Destino == f), assert(destino(destino_faro)),perguntaPreco1(User)
+         )
+      )
+      ;OrigemRecebida == 'origem_viseu' ->
+      (
+         write('"a." - Braga.'),nl,
+         write('"b." - Porto.'),nl,
+         write('"c." - Lisboa.'),nl,
+         write('"d." - Guimaraes.'),nl,
+         write('"e." - Coimbra.'),nl,
+         write('"f." - Faro.'),nl,
+         write(' A sua opcao e : '),read(Destino),
+         (
+            (Destino == a), assert(destino(destino_braga)),perguntaPreco1(User);
+            (Destino == b), assert(destino(destino_porto)),perguntaPreco1(User);
+            (Destino == c), assert(destino(destino_lisboa)),perguntaPreco1(User);
+            (Destino == d), assert(destino(destino_guimaraes)),perguntaPreco1(User);
+            (Destino == e), assert(destino(destino_coimbra)),perguntaPreco1(User);
+            (Destino == f), assert(destino(destino_faro)),perguntaPreco1(User)
+         )
+      )
+      ;OrigemRecebida == 'origem_coimbra' ->
+      (
+         write('"a." - Braga.'),nl,
+         write('"b." - Porto.'),nl,
+         write('"c." - Lisboa.'),nl,
+         write('"d." - Guimaraes.'),nl,
+         write('"e." - Viseu.'),nl,
+         write('"f." - Faro.'),nl,
+         write(' A sua opcao e : '),read(Destino),
+         (
+            (Destino == a), assert(destino(destino_braga)),perguntaPreco1(User);
+            (Destino == b), assert(destino(destino_porto)),perguntaPreco1(User);
+            (Destino == c), assert(destino(destino_lisboa)),perguntaPreco1(User);
+            (Destino == d), assert(destino(destino_guimaraes)),perguntaPreco1(User);
+            (Destino == e), assert(destino(destino_viseu)),perguntaPreco1(User);
+            (Destino == f), assert(destino(destino_faro)),perguntaPreco1(User)
+         )
+      )
+      ;OrigemRecebida == 'origem_faro' ->
+      (
+         write('"a." - Braga.'),nl,
+         write('"b." - Porto.'),nl,
+         write('"c." - Lisboa.'),nl,
+         write('"d." - Guimaraes.'),nl,
+         write('"e." - Viseu.'),nl,
+         write('"f." - Coimbra.'),nl,
+         write(' A sua opcao e : '),read(Destino),
+         (
+            (Destino == a), assert(destino(destino_braga)),perguntaPreco1(User);
+            (Destino == b), assert(destino(destino_porto)),perguntaPreco1(User);
+            (Destino == c), assert(destino(destino_lisboa)),perguntaPreco1(User);
+            (Destino == d), assert(destino(destino_guimaraes)),perguntaPreco1(User);
+            (Destino == e), assert(destino(destino_viseu)),perguntaPreco1(User);
+            (Destino == f), assert(destino(destino_coimbra)),perguntaPreco1(User)
+         )
+      )
+   ).
+
+/* perguntaDestino(User):- nl, write('Escolha o seu destino: '),nl, nl,
  write('"a." - Braga.'),nl,
  write('"b." - Porto.'),nl,
  write('"c." - Lisboa.'),nl,
@@ -247,12 +381,14 @@ perguntaDestino(User):- nl, write('Escolha o seu destino: '),nl, nl,
  (Destino == e), assert(destino(destino_viseu)),perguntaPreco1(User);
  (Destino == f), assert(destino(destino_coimbra)),perguntaPreco1(User);
  (Destino == g), assert(destino(destino_faro)),perguntaPreco1(User)).
+ */
 
 /*
 *
 *PERGUNTA PRECO
 *
 */
+
 perguntaPreco1(User):- nl, write(' Qual o seu orcamento para a viagem? '),nl, nl,
  write('"a." - Quero gastar pouco dinheiro ()'),nl,
  write('"b." - Não tenho um orçamento definido ()'),nl,
@@ -283,10 +419,12 @@ perguntaTempo(User):- nl, write('Prente que seja uma viagem mais curta ou mais l
 */
 perguntaCasaBanho(User):- nl, write('Ira necessitar de uma casa de banho a seu dispor?'),nl, nl,
  write('"a." - Sim'),nl,
- write('"b." - Nao'),nl, nl,
+ write('"b." - Nao'),nl, 
+ write('"c." - Indiferente'),nl,nl,
  write(' A sua opcao e : '),read(CasaBanho),(
  (CasaBanho == a), assert(intermedio(casa_de_banho)), nl, perguntaWifi1(User);
- (CasaBanho == b), assert(intermedio(nao_casa_de_banho)), nl, perguntaWifi1(User)).
+ (CasaBanho == b), assert(intermedio(sem_casa_de_banho)), nl, perguntaWifi1(User);
+ (CasaBanho == c), assert(intermedio(indiferente_casa_de_banho)), nl, perguntaWifi1(User)).
 
 
 
@@ -297,10 +435,12 @@ perguntaCasaBanho(User):- nl, write('Ira necessitar de uma casa de banho a seu d
 */
  perguntaWifi1(User):- nl, write('Gosta de ver series/filmes durante a viagem?'),nl, nl,
  write('"a." - Sim'),nl,
- write('"b." - Nao'),nl, nl,
+ write('"b." - Nao'),nl,
+ write('"c." - Indiferente'),nl, nl,
  write(' A sua opcao e : '),read(Wifi),(
  (Wifi == a), assert(intermedio(wifi)), nl, perguntaFumador1(User);
- (Wifi == b), assert(intermedio(sem_wifi)), nl, perguntaFumador1(User)).
+ (Wifi == b), assert(intermedio(sem_wifi)), nl, perguntaFumador1(User);
+ (Wifi == c), assert(intermedio(indiferente_wifi)), nl, perguntaFumador1(User)).
 
 /*
 *
@@ -309,10 +449,12 @@ perguntaCasaBanho(User):- nl, write('Ira necessitar de uma casa de banho a seu d
 */
 perguntaFumador1(User):- nl, write('Pertende fumar durante a viagem?'),nl, nl,
 write('"a." - Sim'),nl,
-write('"b." - Nao'),nl, nl,
+write('"b." - Nao'),nl,
+write('"c." - Indiferente'),nl, nl,
 write(' A sua opcao e : '),read(ZonaFumador),(
 (ZonaFumador == a), assert(intermedio(zona_fumador)), nl, perguntaEcologica(User);
-(ZonaFumador == b), assert(intermedio(sem_zona_fumador)), nl, perguntaEcologica(User)).
+(ZonaFumador == b), assert(intermedio(sem_zona_fumador)), nl, perguntaEcologica(User);
+(ZonaFumador == c), assert(intermedio(indiferente_zona_fumador)), nl, perguntaEcologica(User)).
 
 /*
 *
@@ -321,25 +463,37 @@ write(' A sua opcao e : '),read(ZonaFumador),(
 */
 perguntaEcologica(User):- nl, write('Tem preocupacao com os gastos de CO2 da viagem?'),nl, nl,
 write('"a." - Sim'),nl,
-write('"b." - Nao'),nl, nl,
+write('"b." - Nao'),nl,
+write('"c." - Indiferente'),nl, nl,
 write(' A sua opcao e : '),read(Ecologica),(
 (Ecologica == a), assert(intermedio(mais_ecologico)), nl, final(User);
-(Ecologica == b), assert(intermedio(menos_ecologico)), nl, final(User)).
+(Ecologica == b), assert(intermedio(menos_ecologico)), nl, final(User);
+(Ecologica == c), assert(intermedio(indiferente_ecologico)), nl, final(User)).
 
 %____VERIFICAR LISTAS
 all_from_first_in_second(List1, List2) :-
    forall(member(Element,List1), member(Element,List2)).
 
+
+/*
+
+Corrigir erro, dos indiferentes
+
+*/
 %___VERIFICAR ORIGEM
 /* verificar_origem_destino(OOrigem, DDestino):-
    findall(X, fact(X), Factos), %pegar em todos os factos registados
    nth0(0, Factos, Origem), %pegar na origem
    nth0(1, Factos, Destino). %pegar no destino */
 
-subset([], _).
-subset([H|T], L) :-
-    member(H, L),
-    subset(T, L).
+/* subset([], _).
+subset([X|Tail], Y):-
+   select(X, Y),
+   subset(Tail, Y). */
+
+/*    all_in_list([Head|Tail], List) :-
+      member(Head, List),
+      subset(Tail, List). */
 
 
 final(User):- nl, /* findall(X, intermedio(X), Intermedio), write(Intermedio),
@@ -348,7 +502,8 @@ nl,findall(X, destino(X), Destino), write(Destino), */
 demo, nl, write('Obrigado, '), write(User).
 
 
-resultado(P):- nl,findall(X, origem(X), Origem),findall(X, destino(X), Destino), nth0(0,Destino,DestinoVerificar), nth0(0,Origem,OrigemVerificar),findall(Y,(fact(P),transporte(Y,X,Z,LP), X == OrigemVerificar, Z == DestinoVerificar,subset([P],LP)),L), write('resultado:'), nl, write(L), nl. 
+resultado(P):- nl,findall(X, origem(X), Origem),findall(X, destino(X), Destino),findall(X, fact(X), Factos)/*,write(Factos)*/ ,nth0(0,Destino,DestinoVerificar), nth0(0,Origem,OrigemVerificar),
+findall(Y,(fact(P),transporte(Y,X,Z,LP), X == OrigemVerificar, Z == DestinoVerificar/* ,nl,nl,write(P) */,ord_subset(LP, Factos)),L), write('resultado:'), nl, write(L), nl. 
 
 teste:- findall(X, fact(X), Factos), nl, write(Factos).
 %teste:- findall(X, fact(X), Factos), nth0(0, Factos, Origem),nth0(1, Factos, Destino), write(Origem), write(Destino).
