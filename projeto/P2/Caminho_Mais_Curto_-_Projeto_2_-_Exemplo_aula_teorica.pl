@@ -25,13 +25,21 @@ arco(valenca,viana, 40).
 
 % AULA 9 - SISTEMA DE INFERÊNCIA DESTE PROGRAMA %
 %onde tem distancia tinhamos "comprimento", "length"%
+
+%o predicado caminhocurto é responsável por gerar um caminho C entre os pontos X e Y usando o predicado caminho(X, Y, C). A segunda cláusula do predicado caminhocurto chama o predicado maiscurto(X, Y, C) para testar se o caminho C é o mais curto.
 caminhocurto(X,Y,C):-caminho(X,Y,C), % gerar
  maiscurto(X,Y,C).% testar
+
+%o predicado maiscurto utiliza o predicado distancia(C, NC) para calcular a distância NC do caminho NC
+%o ! é usado para evitar a geração de soluções adicionais desnecessárias. Através do predicado \+ menor(X,Y,NC) vê se não há opções melhores/caminhos mais curtos
 maiscurto(X,Y,C):- distancia(C,NC),!, 
  \+ menor(X,Y,NC). 
 menor(X,Y,NC):- caminho(X,Y,C1), 
  distancia(C1,NC1), 
  NC1<NC. 
+
+
+
 
 %  AULA 8 caminho.pl 
 %Caminho que passa por menos cidades no gráfo

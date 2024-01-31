@@ -56,7 +56,6 @@ composed_fact( Cond1 or Cond2)  :-
    !,
    write( 'Derived: '), write( P), nl,
    assert( fact( P)),
-   resultado(P),
    demo.                           % Continue
 demo:- write( 'No more facts').          % All facts derived
 
@@ -67,7 +66,7 @@ new_derived_fact( Concl)  :-
 
 composed_fact( Cond)  :-
    %write('1:'),write(Cond),nl,nl,
-   intermedio( Cond).                      % Simple fact
+   fact( Cond).                      % Simple fact
 
 composed_fact( Cond1 and Cond2)  :-
    %write('2:'),write(Cond1),write(Cond2),nl,nl,
@@ -80,29 +79,57 @@ composed_fact( Cond1 or Cond2)  :-
    composed_fact( Cond2).
 
 
-if gastar_pouco and viagem_curta then viagemTrabalho.
-if gastar_pouco and viagem_longa then viagemGastarPoucoLonga.
+if gastar_pouco and viagem_curta then final:viagemTrabalho.
+if gastar_pouco and viagem_longa then final:viagemGastarPoucoLonga.
 %if gastar_pouco and sem_restricao then viagemGastarPouco.
 
 %__GASTAR MUITO__
-if gastar_muito and viagem_longa then viagemPasseio.
-if gastar_muito and viagem_curta then viagemGastarMuitoCurta.
+if gastar_muito and viagem_longa then final:viagemPasseio.
+if gastar_muito and viagem_curta then final:viagemGastarMuitoCurta.
 %if gastar_muito and sem_restricao then viagemGastarMuito.
 
 
+if casa_de_banho and zona_fumador then final:casaBanhoFumador.
+if casa_de_banho and sem_zona_fumador then final:casaBanhoSemZonaFumador.
+
+if sem_casa_de_banho and zona_fumador then final:semCasaBanhoFumador.
+if sem_casa_de_banho and sem_zona_fumador then final:semCasaBanhoSemZonaFumador.
+
+if wifi and mais_ecologico then final:wifiMaisEcologico.
+if sem_wifi and mais_ecologico then final:semWifiMaisEcologico.
+
+
+if wifi and menos_ecologico then final:wifiMenosEcologico.
+if sem_wifi and menos_ecologico then final:semWifiMenosEcologico.
+
+/*juntar perguntas, para ter algums juntas e meter finais*/
+
+/* if viagemTrabalho and casa_de_banho then viagemTrabalhoCasaBanho
+
+   if viagemTrabalhoCasaBanho and zona_fumador then viagemTrabalhoCasaBanhoZonaFumador
+
+      if viagemTrabalhoCasaBanhoZonaFumador and wifi then final:viagemTrabalhoCasaBanhoZonaFumadorWifi
+      if viagemTrabalhoCasaBanhoZonaFumador and sem_wifi then final:viagemTrabalhoCasaBanhoZonaFumadorSemWifi
+
+   if viagemTrabalhoCasaBanho and sem_zona_fumador then viagemTrabalhoCasaBanhoSemZonaFumador
+
+      if viagemTrabalhoCasaBanhoZonaFumador and wifi then final:viagemTrabalhoCasaBanhoSemZonaFumadorWifi
+      if viagemTrabalhoCasaBanhoZonaFumador and sem_wifi then final:viagemTrabalhoCasaBanhoSemZonaFumadorSemWifi
+
+if viagemTrabalho and sem_casa_de_banho then viagemTrabalhoSemCasaBanho
+   if viagemTrabalhoCasaBanho and zona_fumador then viagemTrabalhoSemCasaBanhoZonaFumador
+
+      if viagemTrabalhoCasaBanhoZonaFumador and wifi then final:viagemTrabalhoCasaBanhoZonaFumadorWifi
+      if viagemTrabalhoCasaBanhoZonaFumador and sem_wifi then final:viagemTrabalhoCasaBanhoZonaFumadorSemWifi */
+
+
+/* if gastar_pouco and viagem_curta then viagemTrabalho.
+if viagem_curta then viagemGastarMuitoCurta.
+if gastar_muito then viagemPasseio.
 if casa_de_banho and zona_fumador then casaBanhoFumador.
-if casa_de_banho and sem_zona_fumador then casaBanhoSemZonaFumador.
-
 if sem_casa_de_banho and zona_fumador then semCasaBanhoFumador.
-if sem_casa_de_banho and sem_zona_fumador then semCasaBanhoSemZonaFumador.
-
 if wifi and mais_ecologico then wifiMaisEcologico.
-if sem_wifi and mais_ecologico then semWifiMaisEcologico.
-
-
-if wifi and menos_ecologico then wifiMenosEcologico.
-if sem_wifi and menos_ecologico then semWifiMenosEcologico.
-
+if mais_ecologico then semWifiMaisEcologico. */
 
 %_________________________ BASE DE DADOS _________________________________
 
@@ -110,7 +137,7 @@ if sem_wifi and menos_ecologico then semWifiMenosEcologico.
 %__ORIGEM BRAGA & DESTINO PORTO__
 transporte('Origem: Braga, Destino: Porto, Preco: 3€, Transporte: Comboio, Tempo de Viagem: 50 minutos', origem_braga, destino_porto, [viagemTrabalho, casaBanhoFumador, wifiMaisEcologico]).
 transporte('Origem: Braga, Destino: Porto, Preco: 14€, Transporte: Autocarro, Tempo de Viagem: 70 minutos', origem_braga, destino_porto, [viagemPasseio, semCasaBanhoSemZonaFumador, wifiMaisEcologico]).
-transporte('Origem: Braga, Destino: Porto, Preco: 15€, Transporte: Automovel, Tempo de Viagem: 40 minutos', origem_braga, destino_porto, [viagemTrabalho, semCasaBanhoFumador, semWifiMenosEcologico]).
+transporte('Origem: Braga, Destino: Porto, Preco: 15€, Transporte: Automovel, Tempo de Viagem: 40 minutos', origem_braga, destino_porto, [viagemTrabalho, casaBanhoFumador, semWifiMenosEcologico]).
 
 transporte('Origem: Porto, Destino: Braga, Preco: 3€, Transporte: Comboio, Tempo de Viagem: 50 minutos', origem_porto, destino_braga, [viagemTrabalho, casaBanhoFumador, wifiMaisEcologico]).
 transporte('Origem: Porto, Destino: Braga, Preco: 14€, Transporte: Autocarro, Tempo de Viagem: 70 minutos', origem_porto, destino_braga, [viagemPasseio, semCasaBanhoSemZonaFumador, wifiMaisEcologico]).
@@ -197,7 +224,7 @@ transporte('Origem: Coimbra, Destino: Viseu, Preco: 40€, Transporte: Automóve
 %_________________________ INTERFACE _____________________________________
 :-dynamic(fact/1). % definir fact como dinamico
 /* :-[backward, forward, bd, baseconhecimento]. */
-:- use_module(library(lists)).
+/* :- use_module(library(lists)). */
 
 iniciar:-retractall(fact(_)), retractall(intermedio(_)), retractall(origem(_)), retractall(destino(_)),write('Bem vindo e Boa sessão!'),nl,nl,perguntaNome().
 
@@ -232,7 +259,7 @@ perguntaOrigem(User):- nl, write('Escolha a sua origem: '),nl, nl,
 /*
 *
 *PERGUNTA DESTINO
-*findall(X, origem(X), Origem) nth0(0,Origem,OrigemVerificar)
+*
 */
 
 perguntaDestino(User):- findall(X, origem(X), Origem), nth0(0,Origem,OrigemRecebida),
@@ -365,7 +392,9 @@ perguntaDestino(User):- findall(X, origem(X), Origem), nth0(0,Origem,OrigemReceb
       )
    ).
 
-/* perguntaDestino(User):- nl, write('Escolha o seu destino: '),nl, nl,
+/* Normal 
+
+perguntaDestino(User):- nl, write('Escolha o seu destino: '),nl, nl,
  write('"a." - Braga.'),nl,
  write('"b." - Porto.'),nl,
  write('"c." - Lisboa.'),nl,
@@ -394,9 +423,9 @@ perguntaPreco1(User):- nl, write(' Qual o seu orcamento para a viagem? '),nl, nl
  write('"b." - Não tenho um orçamento definido ()'),nl,
  write('"c." - Posso gastar muito, não me preocupa ()'),nl,
  write(' A sua opcao e : '),read(Orcamento),(
- (Orcamento == a), assert(intermedio(gastar_pouco)),perguntaTempo(User);
- (Orcamento == b), assert(intermedio(sem_orcamento)),perguntaTempo(User);
- (Orcamento == c), assert(intermedio(gastar_muito)),perguntaTempo(User)).
+ (Orcamento == a), assert(fact(gastar_pouco)),perguntaTempo(User);
+ (Orcamento == b), assert(fact(sem_orcamento)),perguntaTempo(User);
+ (Orcamento == c), assert(fact(gastar_muito)),perguntaTempo(User)).
 
 /*
 *
@@ -408,9 +437,9 @@ perguntaTempo(User):- nl, write('Prente que seja uma viagem mais curta ou mais l
  write('"b." - Passo o tempo de viagem ocupado, portanto tanto faz.'),nl,
  write('"c." - Pretendo uma viagem longa para desfrutar.'),nl,
  write(' A sua opcao e : '),read(Duracao),(
- (Duracao == a), assert(intermedio(viagem_curta)),perguntaCasaBanho(User);
- (Duracao == b), assert(intermedio(sem_restricao)),perguntaCasaBanho(User);
- (Duracao == c), assert(intermedio(viagem_longa)),perguntaCasaBanho(User)).
+ (Duracao == a), assert(fact(viagem_curta)),perguntaCasaBanho(User);
+ (Duracao == b), assert(fact(sem_restricao)),perguntaCasaBanho(User);
+ (Duracao == c), assert(fact(viagem_longa)),perguntaCasaBanho(User)).
 
 /*
 *
@@ -419,42 +448,34 @@ perguntaTempo(User):- nl, write('Prente que seja uma viagem mais curta ou mais l
 */
 perguntaCasaBanho(User):- nl, write('Ira necessitar de uma casa de banho a seu dispor?'),nl, nl,
  write('"a." - Sim'),nl,
- write('"b." - Nao'),nl, 
- write('"c." - Indiferente'),nl,nl,
+ write('"b." - Nao'),nl,nl,
  write(' A sua opcao e : '),read(CasaBanho),(
- (CasaBanho == a), assert(intermedio(casa_de_banho)), nl, perguntaWifi1(User);
- (CasaBanho == b), assert(intermedio(sem_casa_de_banho)), nl, perguntaWifi1(User);
- (CasaBanho == c), assert(intermedio(indiferente_casa_de_banho)), nl, perguntaWifi1(User)).
-
-
+ (CasaBanho == a), assert(fact(casa_de_banho)), nl, perguntaWifi(User);
+ (CasaBanho == b), assert(fact(sem_casa_de_banho)), nl, perguntaWifi(User)).
 
 /*
 *
 *PERGUNTA WIFI
 *
 */
- perguntaWifi1(User):- nl, write('Gosta de ver series/filmes durante a viagem?'),nl, nl,
+ perguntaWifi(User):- nl, write('Gosta de ver series/filmes durante a viagem?'),nl, nl,
  write('"a." - Sim'),nl,
- write('"b." - Nao'),nl,
- write('"c." - Indiferente'),nl, nl,
+ write('"b." - Nao'),nl,nl,
  write(' A sua opcao e : '),read(Wifi),(
- (Wifi == a), assert(intermedio(wifi)), nl, perguntaFumador1(User);
- (Wifi == b), assert(intermedio(sem_wifi)), nl, perguntaFumador1(User);
- (Wifi == c), assert(intermedio(indiferente_wifi)), nl, perguntaFumador1(User)).
+ (Wifi == a), assert(fact(wifi)), nl, perguntaFumador(User);
+ (Wifi == b), assert(fact(sem_wifi)), nl, perguntaFumador(User)).
 
 /*
 *
 *PERGUNTA ZONA FUMADOR
 *
 */
-perguntaFumador1(User):- nl, write('Pertende fumar durante a viagem?'),nl, nl,
+perguntaFumador(User):- nl, write('Pertende fumar durante a viagem?'),nl, nl,
 write('"a." - Sim'),nl,
-write('"b." - Nao'),nl,
-write('"c." - Indiferente'),nl, nl,
+write('"b." - Nao'),nl,nl,
 write(' A sua opcao e : '),read(ZonaFumador),(
-(ZonaFumador == a), assert(intermedio(zona_fumador)), nl, perguntaEcologica(User);
-(ZonaFumador == b), assert(intermedio(sem_zona_fumador)), nl, perguntaEcologica(User);
-(ZonaFumador == c), assert(intermedio(indiferente_zona_fumador)), nl, perguntaEcologica(User)).
+(ZonaFumador == a), assert(fact(zona_fumador)), nl, perguntaEcologica(User);
+(ZonaFumador == b), assert(fact(sem_zona_fumador)), nl, perguntaEcologica(User)).
 
 /*
 *
@@ -463,23 +484,15 @@ write(' A sua opcao e : '),read(ZonaFumador),(
 */
 perguntaEcologica(User):- nl, write('Tem preocupacao com os gastos de CO2 da viagem?'),nl, nl,
 write('"a." - Sim'),nl,
-write('"b." - Nao'),nl,
-write('"c." - Indiferente'),nl, nl,
+write('"b." - Nao'),nl,nl,
 write(' A sua opcao e : '),read(Ecologica),(
-(Ecologica == a), assert(intermedio(mais_ecologico)), nl, final(User);
-(Ecologica == b), assert(intermedio(menos_ecologico)), nl, final(User);
-(Ecologica == c), assert(intermedio(indiferente_ecologico)), nl, final(User)).
+(Ecologica == a), assert(fact(mais_ecologico)), nl, final(User);
+(Ecologica == b), assert(fact(menos_ecologico)), nl, final(User)).
 
 %____VERIFICAR LISTAS
 all_from_first_in_second(List1, List2) :-
    forall(member(Element,List1), member(Element,List2)).
 
-
-/*
-
-Corrigir erro, dos indiferentes
-
-*/
 %___VERIFICAR ORIGEM
 /* verificar_origem_destino(OOrigem, DDestino):-
    findall(X, fact(X), Factos), %pegar em todos os factos registados
@@ -491,19 +504,33 @@ subset([X|Tail], Y):-
    select(X, Y),
    subset(Tail, Y). */
 
+subset([], []).
+subset([X|Xs], [X|Ys]) :- subset(Xs, Ys).
+subset(Xs, [_|Ys]) :- subset(Xs, Ys).
+
 /*    all_in_list([Head|Tail], List) :-
       member(Head, List),
       subset(Tail, List). */
 
 
-final(User):- nl, /* findall(X, intermedio(X), Intermedio), write(Intermedio),
-nl, findall(X, origem(X), Origem), write(Origem),
-nl,findall(X, destino(X), Destino), write(Destino), */
-demo, nl, write('Obrigado, '), write(User).
+final(User):- nl, demo, nl, resultado,write('Obrigado, '), write(User).
 
 
-resultado(P):- nl,findall(X, origem(X), Origem),findall(X, destino(X), Destino),findall(X, fact(X), Factos)/*,write(Factos)*/ ,nth0(0,Destino,DestinoVerificar), nth0(0,Origem,OrigemVerificar),
-findall(Y,(fact(P),transporte(Y,X,Z,LP), X == OrigemVerificar, Z == DestinoVerificar/* ,nl,nl,write(P) */,ord_subset(LP, Factos)),L), write('resultado:'), nl, write(L), nl. 
+/* resultado(P):- nl,findall(X, origem(X), Origem),findall(X, destino(X), Destino),findall(X, fact(X), Factos),write(Factos) ,nth0(0,Destino,DestinoVerificar), nth0(0,Origem,OrigemVerificar),
+findall(A,(fact(P),transporte(Y,X,Z,LP),  X == OrigemVerificar, Z == DestinoVerificar fact(final:A)),L),mostrarOpcoes(L). */
 
-teste:- findall(X, fact(X), Factos), nl, write(Factos).
-%teste:- findall(X, fact(X), Factos), nth0(0, Factos, Origem),nth0(1, Factos, Destino), write(Origem), write(Destino).
+resultado:- findall(O, origem(O), Origem),findall(D, destino(D), Destino),nth0(0,Destino,DestinoVerificar), nth0(0,Origem,OrigemVerificar),findall(transporte(X,Y,Z,W), (transporte(X,Y,Z,W), Y == OrigemVerificar, Z == DestinoVerificar), Transportes),resultado(Transportes).%procurar todos os transporte e meter numa lista
+
+resultado([]):- nl,write('Todos os transportes foram processados com sucesso!'), true. %Caso não hajam mais transportes para serem vistos
+
+resultado([transporte(X,Y,U,Z)|RestantesTransportes]):- findall(A, fact(final:A), L),
+                                                      (subset(L,Z) ->
+                                                               write(X),resultado(RestantesTransportes)
+                                                               ;
+                                                               resultado(RestantesTransportes)
+                                                               ).
+/* resultado([_|C]):-resultado(C). */
+
+/* escrever(transporte(X,Y,U,Z)):- nl, write(X),nl,write(Y). */
+
+mostrarOpcoes(Lista):- nl,nl,write('resultado:'), nl, write(Lista), nl.
